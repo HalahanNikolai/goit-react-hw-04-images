@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-import { InfinitySpin } from 'react-loader-spinner';
+import { RotatingLines } from 'react-loader-spinner';
 import React, { Component } from 'react';
 import * as PixabayAPI from '../../services/pixabay-api';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
@@ -76,11 +76,6 @@ export default class Gallery extends Component {
           status: Status.REJECTED,
         });
       }
-
-      console.log(this.state.searchQuery);
-      console.log(this.state.currentPage);
-      console.log(data);
-
   
       this.setState({
         images: [...data.hits],
@@ -134,12 +129,12 @@ export default class Gallery extends Component {
           {this.state.images.length > 0 && (
             <ImageGallery images={this.state.images}></ImageGallery>
           )}
-          <InfinitySpin
-            color="#09923d"
-            style={{
-              margin: '22px',
-            }}
+          <RotatingLines
+            strokeColor="#82a38f"
+            width= '55px'
           />
+          {/* strokeColor, strokeWidth, animationDuration, width, visible, ariaLabel, */}
+ 
         </>
       );
     }
