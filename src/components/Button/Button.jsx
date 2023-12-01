@@ -1,12 +1,10 @@
-import React from 'react';
-import { ButtonLoadMore } from './Button,styled';
+import { Btn } from './Button.styled';
 
-function Button({ onClick }) {
+export const Button = ({ children, type = 'button', onClick = null }) => {
   return (
-    <ButtonLoadMore type="button" onClick={onClick}>
-      Load More
-    </ButtonLoadMore>
+    <Btn type={type} onClick={onClick}>
+      {children}
+    </Btn>
   );
-}
+};
 
-export default Button;

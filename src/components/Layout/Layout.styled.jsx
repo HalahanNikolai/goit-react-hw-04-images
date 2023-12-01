@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
-export const List = styled.ul`
+export const Container = styled.main`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 20px;
+  grid-template-columns: 1fr;
+  grid-gap: 8px;
   place-content: center;
-
-  max-width: calc(100vw - 48px);
 
   margin: 1vh auto;
   padding-right: ${props => props.theme.space[4]}px;
