@@ -1,36 +1,49 @@
 import styled from 'styled-components';
 
-export const ListItem = styled.li`
-  border-radius: 16px;
-  border: 2px solid rgba(185, 228, 201, 0.5);
+export const GalleryInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  opacity: 0;
+  width: 50%;
+  max-width: 150px;
+  height: 100%;
+  padding: 10px;
+  text-align: start;
+  font-size: 24px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.488);
+  transition: opacity 0.3s ease, left 0.3s ease;
+`;
+
+export const GalleryItem = styled.li`
+  position: relative;
   overflow: hidden;
+  margin-right: auto;
+  margin-left: auto;
 
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  height: 450px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 
-  transform: scale(1);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.01);
-    cursor: zoom-in;
-  }
+  &:hover img {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transform: scale(1.05);
+    filter: blur(1px);
+  }   
 `;
 
-export const Picture = styled.img`
-  width: 100%;
-  height: auto;
-  height: 380px;
-  object-fit: cover;
-  object-position: center;
-`;
-
-export const ModalPicture = styled.img`
+export const GalleryImage = styled.img`
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  transition: all 0.3s ease;
 `;

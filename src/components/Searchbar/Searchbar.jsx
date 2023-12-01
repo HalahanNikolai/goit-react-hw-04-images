@@ -1,46 +1,50 @@
-import React, { useState } from 'react';
+import Notiflix from 'notiflix';
+import { useState } from 'react';
 import {
-  Header,
-  SearchForm,
-  SearchFormBtn,
-  SearchFormInput,
+  SearchbarWrap,
+  SearchbarForm,
+  SearchbarButton,
+  SearchbarSpan,
+  SearchbarInput,
 } from './Searchbar.styled';
-import { HiMagnifyingGlass } from 'react-icons/hi2';
-import { toast } from 'react-toastify';
-import { notifyOptions } from 'utils/notify';
 
-export const Searchbar = ({ onSubmit }) => {
-  const [value, setValue] = useState('');
-
-  const handleChange = ({ target: { value } }) => {
-    setValue(value.toLowerCase());
+const Searchbar = ({ onSubmit }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const handleChange = event => {
+    const inputValue = event.target.value;
+    setSearchQuery(inputValue);
   };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (value.trim() === '') {
-      return toast.info('Please enter key words for search', notifyOptions);
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (!searchQuery.trim()) {
+      return Notiflix.Report.failure(
+        'PixQuery Failure',
+        'Please enter a keyword or phrase to search for photos. We will do our best to find suitable images for you.',
+        'Okay'
+      );
     }
-    onSubmit(value);
-    setValue('');
+    onSubmit(searchQuery);
   };
 
   return (
-    <Header>
-      <SearchForm onSubmit={handleSubmit}>
-        <SearchFormBtn>
-          <HiMagnifyingGlass size="22" />
-        </SearchFormBtn>
-        <SearchFormInput
+    <SearchbarWrap>
+      <SearchbarForm onSubmit={handleSubmit}>
+        <SearchbarButton type="submit">
+          <SearchbarSpan></SearchbarSpan>
+        </SearchbarButton>
+
+        <SearchbarInput
+          id="searchInput"
           type="text"
-          autocomplete="off"
+          autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
-          value={value}
+          value={searchQuery}
           onChange={handleChange}
         />
-      </SearchForm>
-    </Header>
+      </SearchbarForm>
+    </SearchbarWrap>
   );
 };
 
+export default Searchbar;

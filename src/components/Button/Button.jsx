@@ -1,10 +1,12 @@
-import { Btn } from './Button.styled';
+import React from 'react';
+import { ButtonLoadMore } from './Button,styled';
 
-export const Button = ({ children, type = 'button', onClick = null }) => {
+function Button({ onClick }) {
   return (
-    <Btn type={type} onClick={onClick}>
-      {children}
-    </Btn>
+    <ButtonLoadMore type="button" onClick={onClick}>
+      Load More
+    </ButtonLoadMore>
   );
-};
+}
 
+export default Button;

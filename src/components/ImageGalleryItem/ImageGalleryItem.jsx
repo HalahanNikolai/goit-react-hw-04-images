@@ -1,36 +1,42 @@
-import { useState } from 'react';
-import { ListItem, ModalPicture, Picture } from './ImageGalleryItem.styled';
-import { Modal } from 'components/Modal/Modal';
+import React, { useState } from 'react';
+import {
+  GalleryItem,
+  GalleryImage,
+} from './ImageGalleryItem.styled';
+import Modal from 'components/Modal/Modal';
 
-export const ImageGalleryItem = ({ item }) => {
-  const { largeImageURL, tags, webformatURL } = item;
-
+const ImageGalleryItem = props => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
+  const {
+    image: {
+      webformatURL,
+      largeImageURL,
+      tags,
+    },
+  } = props;
+
   return (
-    <>
-      <ListItem aria-label="Zoom">
-        <Picture
-          onClick={toggleModal}
-          src={webformatURL}
-          alt={tags}
-          loading="lazy"
-        />
-      </ListItem>
+    <GalleryItem>
+      <GalleryImage
+        src={webformatURL}
+        alt={tags}
+        loading="lazy"
+        onClick={toggleModal}
+      />
       {showModal && (
-        <Modal onModalClose={toggleModal}>
-          {
-            <>
-              <ModalPicture src={largeImageURL} alt={tags} />
-            </>
-          }
-        </Modal>
+        <Modal
+          onClose={toggleModal}
+          largeImageURL={largeImageURL}
+          tags={tags}
+        ></Modal>
       )}
-    </>
+    </GalleryItem>
   );
 };
 
+export default ImageGalleryItem;
