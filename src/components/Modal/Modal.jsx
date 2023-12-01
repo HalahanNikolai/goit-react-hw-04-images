@@ -8,6 +8,7 @@ const Modal = ({ largeImageURL, tags, onClose }) => {
   useEffect(() => {
     document.documentElement.style.overflowY = 'hidden';
     document.addEventListener('keydown', handleKeyClose);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -15,7 +16,8 @@ const Modal = ({ largeImageURL, tags, onClose }) => {
       document.documentElement.style.overflowY = 'auto';
       document.removeEventListener('keydown', handleKeyClose);
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   const handleKeyClose = event => {
     if (event.key === 'Escape' || event.key === ' ') {
